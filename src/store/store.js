@@ -3,6 +3,8 @@ import Vuex from "vuex";
 import {authenticateUser} from "../axios/firebaseAxios";
 
 Vue.use(Vuex)
+
+
 export const store = new Vuex.Store({
   state() {
     return {

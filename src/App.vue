@@ -1,31 +1,23 @@
 <template>
-  <div class="container">
-    <Header />
-    <Reader />
-    <Footer />
+  <div>
+    <appLayout />
   </div>
 </template>
 
 <script>
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
-import Reader from "./components/Reader/Reader";
+import appLayout from "./components/Layout/TheLayout";
 import axios from "./axios/axios";
 
 export default {
   name: "App",
   components: {
-    Header,
-    Footer,
-    Reader,
-   },
+    appLayout,
+  },
   provide: { axios },
 };
-
 </script>
 
 <style lang="scss">
-
 *,
 *::after,
 *::before {

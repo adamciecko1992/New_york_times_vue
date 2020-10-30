@@ -9,8 +9,10 @@
       <template slot="end">
         <b-navbar-item tag="div" v-if="!loggedIn">
           <div class="buttons">
-            <b-button type="is-light">Sign up</b-button>
-            <b-button type="is-info">Log In</b-button>
+            <b-button type="is-light" @click="emitSignUpClick"
+              >Sign up</b-button
+            >
+            <b-button type="is-info" @click="emitLogInClick">Log In</b-button>
           </div>
         </b-navbar-item>
       </template>
@@ -19,7 +21,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState } from "vuex";
 import logo from "../../assets/logo.jpg";
 
 export default {
@@ -36,14 +38,12 @@ export default {
   },
 
   methods: {
-    showLogIn() {
-      this.auth({ username: "admin", password: "admin" });
-      this.login = true;
+    emitLogInClick() {
+      this.$emit("showLogIn");
     },
-    showSignIn() {
-      this.signup = true;
+    emitSignUpClick() {
+      this.$emit("showSignUp");
     },
-    ...mapActions(["auth"]),
   },
 };
 </script>
