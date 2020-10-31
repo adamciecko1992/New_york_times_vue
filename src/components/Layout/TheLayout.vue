@@ -1,7 +1,17 @@
 <template>
   <div>
-    <appHeader @showLogIn="showLogInWindow" @showSignUp="showSignUpWindow" />
-    <appSignUpWindow />
+    <appHeader
+      @showLogIn="toggle('logInVisible')"
+      @showSignUp="toggle('signUpVisible')"
+    />
+    <appSignUpWindow
+      :active="signUpVisible"
+      @closeSignUp="toggle('signUpVisible')"
+    />
+    <appLogInWindow
+      :active="logInVisible"
+      @closeLogIn="toggle('logInVisible')"
+    />
     <div class="container">
       <appReader />
     </div>
@@ -13,7 +23,8 @@
 import appHeader from "../Header/Header";
 import appFooter from "../Footer/Footer";
 import appReader from "../Reader/Reader";
-import appSignUpWindow from "../SignUpWindow/theSignInWindow";
+import appSignUpWindow from "../SignUpWindow/theSignUpWindow";
+import appLogInWindow from "../LogInWindow/TheLogInWindow";
 
 export default {
   components: {
@@ -21,18 +32,17 @@ export default {
     appFooter,
     appReader,
     appSignUpWindow,
+    appLogInWindow,
   },
   data() {
     return {
       logInVisible: false,
+      signUpVisible: false,
     };
   },
   methods: {
-    showLogInWindow() {
-      this.logInVisible = true;
-    },
-    showSignUpWindow() {
-      this.signUpVisible = true;
+    toggle(prop) {
+      this[prop] = !this[prop];
     },
   },
 };

@@ -11,7 +11,7 @@
       >
       </b-input>
       <p class="control">
-        <b-button type="is-primary is-medium" @click="fetchArticles"
+        <b-button type="is-primary is-medium" @click="fetchArticles(1)"
           >Search</b-button
         >
       </p>
@@ -25,7 +25,12 @@
       </Article>
     </ArticleList>
     <Spinner v-else />
-    <Pagination />
+    <Pagination
+      v-show="response"
+      :page="page"
+      :total="Math.min(totalHits / 10, 500)"
+      @changePage="handlePageChange"
+    />
   </section>
 </template>
 
@@ -33,7 +38,7 @@
 import ArticleList from "../ArticlesList/ArticlesList";
 import Article from "../Article/Article";
 import Spinner from "../UI/baseSpinner";
-import Pagination from "./Pagination/Pagination";
+import Pagination from "../Pagination/Pagination";
 import { mapState } from "vuex";
 
 export default {
@@ -49,6 +54,7 @@ export default {
       phrase: null,
       page: 0,
       articles: null,
+      totalHits: null,
       loading: false,
       response: null,
       howManyPages: null,
@@ -61,16 +67,16 @@ export default {
       isLoggedIn: (state) => state.loggedIn,
     }),
   },
-  created() {
-    console.log(this.isLoggedIn);
-  },
+
   methods: {
-    fetchArticles() {
+    fetchArticles(page = 0) {
       this.loading = true;
+      this.page = page;
       this.axios
-        .get(`articlesearch.json?q=${this.phrase}&page=${this.page}`)
+        .get(`articlesearch.json?q=${this.phrase}&page=${page}`)
         .then(({ data }) => {
           this.articles = data.response.docs;
+          this.totalHits = data.response.meta.hits;
           this.response = data;
           this.loading = false;
           if (data.response.docs.length === 0) {
@@ -87,6 +93,10 @@ export default {
     },
     handleInput(phrase) {
       this.phrase = phrase;
+    },
+    handlePageChange(e) {
+      this.page = e;
+      this.fetchArticles(e);
     },
   },
 };

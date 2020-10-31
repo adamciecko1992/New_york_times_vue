@@ -15,16 +15,16 @@ export const store = new Vuex.Store({
   mutations: {
     logIn(state) {
       state.loggedIn = true;
-      console.log('logged In')
+      
     },
     authError(state){
         state.loggedIn = false;
         state.logInError = true;
-        console.log('error');
+       
     }
   },
   actions: {
-     async auth({ commit }, payload) {
+     async auth({ commit }, payload) { //did it in store only for exercise in dispatching actions
          const isAuthenticated = await authenticateUser(payload);
          if(isAuthenticated){
              commit('logIn')
@@ -32,5 +32,6 @@ export const store = new Vuex.Store({
              commit('authError')
          }
     },
+ 
   },
 });
