@@ -6,7 +6,7 @@
 
 <script>
 import appLayout from "./components/Layout/TheLayout";
-import axios from "./axios/axios";
+import axios from "./axios/nytAxios";
 
 export default {
   name: "App",
@@ -24,6 +24,6 @@ export default {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  transition: all .2s;
+  transition: all 0.2s;
 }
 </style>

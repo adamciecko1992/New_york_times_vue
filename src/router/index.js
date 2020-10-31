@@ -5,21 +5,31 @@ import Account from "../views/Account.vue";
 
 Vue.use(VueRouter)
 
+
 const routes = [{
         path: '/',
         name: 'Reader',
         component: Reader
     },
+    { path: "/:id", component: Reader, name: 'ReaderId', },
     {
-        path: '/account',
+        path: '/account/:id',
         name: 'account',
         component: Account
     },
+    {
+        path: "/:id/:page",
+        component: Reader,
+        name: 'ReaderIdPage',
+    }
+
 
 ]
 
 const router = new VueRouter({
-    routes
+    routes,
+    mode: "history"
+
 })
 
 export default router

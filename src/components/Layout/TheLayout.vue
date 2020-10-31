@@ -30,7 +30,6 @@ export default {
   components: {
     appHeader,
     appFooter,
-
     appSignUpWindow,
     appLogInWindow,
   },

@@ -21,8 +21,30 @@
         <slot name="text"></slot>
       </p>
     </div>
+    <div class="card-footer" v-if="loggedIn">
+      <b-button type="is-primary" class="article__saveBtn" @click="save"
+        >Save</b-button
+      >
+    </div>
   </div>
 </template>
+
+
+<script>
+export default {
+  props: {
+    loggedIn: Boolean,
+    article: Object,
+  },
+  methods: {
+    save() {
+      this.$emit("saved", this.article);
+    },
+  },
+};
+</script>
+
+
 
 <style lang="scss">
 .article {
@@ -32,6 +54,9 @@
   }
   &__text {
     padding: 5px;
+  }
+  &__saveBtn {
+    margin-top: 2rem;
   }
 }
 </style>

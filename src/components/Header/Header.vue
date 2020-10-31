@@ -8,14 +8,35 @@
       </template>
       <template slot="start" v-if="loggedIn">
         <b-navbar-item>
-           <router-link to="/account"  v-slot="{isExactActive,navigate,href}">
-             <b-button :class="{'is-warning':isExactActive}" :href="href" @click="navigate" expanded>Account</b-button>
-             </router-link>
+          <router-link
+            :to="`/account/${userId}`"
+            v-slot="{ isExactActive, navigate, href }"
+          >
+            <b-button
+              :class="{ 'is-warning': isExactActive }"
+              :href="href"
+              @click="navigate"
+              expanded
+              >Account</b-button
+            >
+          </router-link>
         </b-navbar-item>
         <b-navbar-item>
-          <router-link to="/"  v-slot="{isExactActive,navigate,href}">
-             <b-button :class="{'is-warning':isExactActive}" :href="href" @click="navigate" expanded>Reader</b-button>
-             </router-link>
+          <router-link
+            :to="`/${userId}`"
+            v-slot="{ isExactActive, navigate, href }"
+          >
+            <b-button
+              :class="{ 'is-warning': isExactActive }"
+              :href="href"
+              @click="navigate"
+              expanded
+              >Reader</b-button
+            >
+          </router-link>
+        </b-navbar-item>
+        <b-navbar-item>
+          <b-button type="is-link" @click="handleLogOut">Log Out</b-button>
         </b-navbar-item>
       </template>
 
@@ -34,7 +55,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 import logo from "../../assets/logo.jpg";
 
 export default {
@@ -46,7 +67,8 @@ export default {
 
   computed: {
     ...mapState({
-      loggedIn: (state) => state.loggedIn,
+      loggedIn: (state) => state.firebaseModule.loggedIn,
+      userId: (state) => state.firebaseModule.userData.id,
     }),
   },
 
@@ -57,6 +79,11 @@ export default {
     emitSignUpClick() {
       this.$emit("showSignUp");
     },
+    handleLogOut() {
+      this.logOut();
+      this.$router.push("/");
+    },
+    ...mapMutations({ logOut: "firebaseModule/logOut" }),
   },
 };
 </script>

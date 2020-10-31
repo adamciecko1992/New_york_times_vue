@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import appReader from "../components/Reader/Reader";
+import appReader from "../components/Reader/TheReader";
 export default {
   components: {
     appReader,

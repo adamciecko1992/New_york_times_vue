@@ -46,8 +46,9 @@ export default {
       return "";
     },
     ...mapState({
-      error: (state) => state.logInError,
-      loggedIn: (state) => state.loggedIn,
+      error: (state) => state.firebaseModule.logInError,
+      loggedIn: (state) => state.firebaseModule.loggedIn,
+      userData: (state) => state.firebaseModule.userData,
     }),
   },
   watch: {
@@ -55,6 +56,12 @@ export default {
       if (this.loggedIn) {
         this.handleClose();
         alert("Welcome ");
+      }
+    },
+    userData() {
+      console.log("changed");
+      if (this.userData.id) {
+        this.$router.push(`/${this.userData.id}`);
       }
     },
   },
@@ -67,7 +74,9 @@ export default {
       const user = { username: this.username, password: this.password };
       this.auth(user);
     },
-    ...mapActions(["auth"]),
+    ...mapActions({
+      auth: "firebaseModule/auth",
+    }),
   },
 };
 </script>

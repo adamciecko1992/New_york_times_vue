@@ -43,6 +43,8 @@
 
 <script>
 import { SignUpUser, checkNameAvailability } from "../../axios/firebaseAxios";
+import uuid from "uuid/dist/v4";
+
 export default {
   data() {
     return {
@@ -90,7 +92,11 @@ export default {
       this.$emit("closeSignUp");
     },
     handleSubmit() {
-      const user = { username: this.username, password: this.password };
+      const user = {
+        username: this.username,
+        password: this.password,
+        id: uuid(),
+      };
       if (this.validateForm()) {
         SignUpUser(user);
         alert("Acccount Created");
@@ -106,7 +112,7 @@ export default {
         passwordConfirmation,
         usernameAvailable,
       } = this;
-      const validUsername = username.length > 4 && usernameAvailable;
+      const validUsername = username.length >= 3 && usernameAvailable;
       const passwordsMatch = password === passwordConfirmation;
       return validUsername && passwordsMatch && usernameAvailable;
     },
