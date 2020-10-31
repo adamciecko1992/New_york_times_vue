@@ -24,5 +24,6 @@ export default {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  transition: all .2s;
 }
 </style>

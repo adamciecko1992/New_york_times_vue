@@ -1,5 +1,6 @@
 <template>
   <section class="reader">
+    <h1 class="is-size-1 has-text-weight-bold has-text-centered reader__header">Browse New York Times Articles</h1>
     <b-field>
       <b-input
         placeholder="Search for articles"
@@ -102,10 +103,13 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .reader {
   margin-top: 4rem;
   padding: 5px;
   min-height: 120vh;
+  &__header{
+    margin-bottom: 2rem;
+  }
 }
 </style>

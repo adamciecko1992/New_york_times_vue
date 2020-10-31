@@ -8,10 +8,14 @@
       </template>
       <template slot="start" v-if="loggedIn">
         <b-navbar-item>
-          <router-link to="/account">Account</router-link>
+           <router-link to="/account"  v-slot="{isExactActive,navigate,href}">
+             <b-button :class="{'is-warning':isExactActive}" :href="href" @click="navigate" expanded>Account</b-button>
+             </router-link>
         </b-navbar-item>
         <b-navbar-item>
-          <router-link to="/">Reader</router-link>
+          <router-link to="/"  v-slot="{isExactActive,navigate,href}">
+             <b-button :class="{'is-warning':isExactActive}" :href="href" @click="navigate" expanded>Reader</b-button>
+             </router-link>
         </b-navbar-item>
       </template>
 

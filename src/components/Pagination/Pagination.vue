@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="pagination">
     <b-pagination
       :total="total"
       :current="page"
@@ -38,4 +38,7 @@ export default {
 </script>
 
 <style>
+.pagination{
+  margin: 1rem;
+}
 </style>

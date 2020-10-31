@@ -50,6 +50,14 @@ export default {
       loggedIn: (state) => state.loggedIn,
     }),
   },
+  watch: {
+    loggedIn() {
+      if (this.loggedIn) {
+        this.handleClose();
+        alert("Welcome ");
+      }
+    },
+  },
 
   methods: {
     handleClose() {
@@ -58,14 +66,6 @@ export default {
     handleSubmit() {
       const user = { username: this.username, password: this.password };
       this.auth(user);
-      setTimeout(() => {
-        //normally i would do authentication logic in component andreact to it
-        //for exercise pourpose i did async code in action
-        if (this.loggedIn) {
-          this.handleClose();
-          alert("logged In");
-        }
-      }, 1000);
     },
     ...mapActions(["auth"]),
   },

@@ -5,25 +5,21 @@ import Account from "../views/Account.vue";
 
 Vue.use(VueRouter)
 
-const routes = [
-  {
-    path: '/',
-    exact:true,
-    name: 'Reader',
-    component: Reader
-  },
-  {
-    path: '/account',
-    name: 'account',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component:Account
-  }
+const routes = [{
+        path: '/',
+        name: 'Reader',
+        component: Reader
+    },
+    {
+        path: '/account',
+        name: 'account',
+        component: Account
+    },
+
 ]
 
 const router = new VueRouter({
-  routes
+    routes
 })
 
 export default router
