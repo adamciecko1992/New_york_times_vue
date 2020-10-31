@@ -46,8 +46,8 @@ export default {
       return "";
     },
     ...mapState({
-      error: "logInError",
-      loggedIn: "loggedIn",
+      error: (state) => state.logInError,
+      loggedIn: (state) => state.loggedIn,
     }),
   },
 
@@ -59,6 +59,8 @@ export default {
       const user = { username: this.username, password: this.password };
       this.auth(user);
       setTimeout(() => {
+        //normally i would do authentication logic in component andreact to it
+        //for exercise pourpose i did async code in action
         if (this.loggedIn) {
           this.handleClose();
           alert("logged In");

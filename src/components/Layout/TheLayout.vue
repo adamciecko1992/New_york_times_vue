@@ -13,7 +13,7 @@
       @closeLogIn="toggle('logInVisible')"
     />
     <div class="container">
-      <appReader />
+      <router-view></router-view>
     </div>
     <appFooter />
   </div>
@@ -22,7 +22,7 @@
 <script>
 import appHeader from "../Header/Header";
 import appFooter from "../Footer/Footer";
-import appReader from "../Reader/Reader";
+
 import appSignUpWindow from "../SignUpWindow/theSignUpWindow";
 import appLogInWindow from "../LogInWindow/TheLogInWindow";
 
@@ -30,7 +30,7 @@ export default {
   components: {
     appHeader,
     appFooter,
-    appReader,
+
     appSignUpWindow,
     appLogInWindow,
   },

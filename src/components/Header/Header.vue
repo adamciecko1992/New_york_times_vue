@@ -6,6 +6,15 @@
           <img :src="logo" alt="New York Times Logo" />
         </b-navbar-item>
       </template>
+      <template slot="start" v-if="loggedIn">
+        <b-navbar-item>
+          <router-link to="/account">Account</router-link>
+        </b-navbar-item>
+        <b-navbar-item>
+          <router-link to="/">Reader</router-link>
+        </b-navbar-item>
+      </template>
+
       <template slot="end">
         <b-navbar-item tag="div" v-if="!loggedIn">
           <div class="buttons">
